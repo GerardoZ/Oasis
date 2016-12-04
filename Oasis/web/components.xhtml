@@ -14,10 +14,10 @@
             </ui:define>
 
             <ui:define name="content">
-                 <h:form id="insert">
+                <h:form id="insert">
                     <p:panelGrid columns="2">
-                        <p:outputLabel for="txtRFC" value="RFC:"/>
-                        <p:inputText id="txtRFC" value="#{supplierBean.supplier.rfc}"/>
+                        <p:outputLabel for="txtCode" value="Código:"/>
+                        <p:inputText id="txtCode" value="#{componentBean.component.code}"/>
                         <p:outputLabel for="txtName" value="Nombre:"/>
                         <p:inputText id="txtName" value="#{supplierBean.supplier.name}"/>
                         <p:outputLabel for="txtEmail" value="Correo electrónico:"/>

@@ -10,9 +10,19 @@ package modelo;
  * @author gerardojavierzaratepina
  */
 public class Component_Purchase {
+    private Component component;
     private double charge;
     private int quantity;
 
+    public Component getComponent() {
+        return component;
+    }
+
+    public void setComponent(Component component) {
+        this.component = component;
+    }
+    
+    
     public double getCharge() {
         return charge;
     }
