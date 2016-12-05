@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -16,23 +17,37 @@
             <ui:define name="content">
                 <h:form id="frm1">
              <h1>Gestion de clientes</h1>
-            <p:panelGrid columns="2">
+              
+             <p:messages id="msgs" />
+               
+             <p:panelGrid columns="3" id="grid">
                 <p:outputLabel for="txtNombre" value="Nombre:"/>
-                <p:inputText id="txtNombre" value="#{clienteBean.alumno.nombre}"/>
+                <p:inputText id="txtNombre" value="#{clienteBean.alumno.nombre}" required="true"/>
+                <p:message for="txtNombre" />
+                
                 <p:outputLabel for="txtMail" value="E-mail:"/>
-                <p:inputText id="txtMail" value="#{clienteBean.alumno.e_mail}"/>
+                <p:inputText id="txtMail" value="#{clienteBean.alumno.e_mail}" required="true"/>
+                <p:message for="txtMail" />
+                
                 <p:outputLabel for="txtDireccion" value="Direccion:"/>
-                <p:inputText id="txtDireccion" value="#{clienteBean.alumno.direccion}"/>
+                <p:inputText id="txtDireccion" value="#{clienteBean.alumno.direccion}" required="true"/>
+                <p:message for="txtDireccion" />
+                
                 <p:outputLabel for="txtColonia" value="Colonia:"/>
-                <p:inputText id="txtColonia" value="#{clienteBean.alumno.colonia}"/>
+                <p:inputText id="txtColonia" value="#{clienteBean.alumno.colonia}" required="true"/>
+                <p:message for="txtColonia" />
+                
                 <p:outputLabel for="txtCp" value="Codigo Postal:"/>
-                <p:inputText id="txtCp" value="#{clienteBean.alumno.codigoPostal}"/>
+                <p:inputText id="txtCp" value="#{clienteBean.alumno.codigoPostal}" required="true"/>
+                <p:message for="txtCp" />
+                
                 <p:outputLabel for="txtTel" value="Telefono:"/>
-                <p:inputText id="txtTel" value="#{clienteBean.alumno.telefono}"/>
+                <p:inputText id="txtTel" value="#{clienteBean.alumno.telefono}" required="false"/>
+                <p:message for="txtTel" />
               
             </p:panelGrid>
              <br></br>
-             <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}"/>
+             <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}" update="grid"/>
              <p:commandButton value="Consultar" actionListener="#{clienteBean.listar()}" update="datos"/>
              
              <br></br>
