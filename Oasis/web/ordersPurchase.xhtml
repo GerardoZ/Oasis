@@ -15,6 +15,8 @@
 
             <ui:define name="content">
                 <h:form>
+                    <h1>ÓRDENES DE COMPRA</h1>
+
                     <p:dataTable id="data" value="#{ordersBean.lstPurchases}" var="purchase">
                         <p:column headerText="ID">
                             <p:outputLabel value="#{purchase.purchase_id}"/>
