@@ -13,7 +13,8 @@ import java.sql.Date;
  */
 public class Purchase {
     private int purchase_id;
-    private Date fecha;
+    private int supplier_id;
+    private Date date;
     private double total;
 
     public int getPurchase_id() {
@@ -24,13 +25,25 @@ public class Purchase {
         this.purchase_id = purchase_id;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public int getSupplier_id() {
+        return supplier_id;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setSupplier_id(int supplier_id) {
+        this.supplier_id = supplier_id;
     }
+    
+    
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    
 
     public double getTotal() {
         return total;

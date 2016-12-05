@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./mainTemplate.xhtml">
+
+            <ui:define name="top">
+                
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="data" value="#{ordersBean.lstPurchases}" var="purchase">
+                        <p:column headerText="ID">
+                            <p:outputLabel value="#{purchase.purchase_id}"/>
+                        </p:column>
+                        <p:column headerText="Proveedor">
+                            <p:outputLabel value="#{purchase.supplier_id}"/>
+                        </p:column>
+                        <p:column headerText="Fecha">
+                            <p:outputLabel value="#{purchase.date}"/>
+                        </p:column>
+                        <p:column headerText="Total">
+                            <p:outputLabel value="#{purchase.total}"/>
+                        </p:column>
+                        <p:column headerText="Ver">
+                            <p:commandButton value="Ver" actionListener="#{ordersBean.read(purchase)}" oncomplete="PF('dlgDatos').show()" update=":dlgDatos"/>
+                        </p:column>
+                        <p:column headerText="Eliminar">
+                            <p:commandButton value="Eliminar"/>
+                        </p:column>
+                        
+                    </p:dataTable>
+                </h:form>
+                <p:dialog header="Datos" widgetVar="dlgDatos" id="dlgDatos">
+                    <h:form id='udpate'>
+                        <p:dataTable value="#{ordersBean.lstDetails}" var="detail">
+                            <p:column headerText="Cantidad">
+                                <p:outputLabel value="#{detail.quantity}"/>
+                            </p:column>
+                            <p:column headerText="Subtotal">
+                                <p:outputLabel value="#{detail.charge}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

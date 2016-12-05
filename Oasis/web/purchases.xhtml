@@ -11,16 +11,48 @@
         <ui:composition template="./mainTemplate.xhtml">
             
             <ui:define name="top">
-                top
+                
             </ui:define>
 
             <ui:define name="content">
-                <p:outputLabel for="txtComponente" value="Componente:"/>
-                <h:selectOneMenu>
-                    <f:selectItems value="#{purchaseBean.lstComponent}"/>
-                </h:selectOneMenu>
-                <p:outputLabel for="txtNombre" value="Nombre:"/>
-                <p:inputText id="txtNombre" value="#{clienteBean.alumno.nombre}"/>
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Proveedor:"/>
+                        <h:selectOneMenu value="#{purchaseBean.supplier}">
+                            <f:selectItems value="#{purchaseBean.lstSupplier}"/>
+                        </h:selectOneMenu>
+                        <p:outputLabel value="Producto:"/>
+                        <h:selectOneMenu value="#{purchaseBean.component}">
+                            <f:selectItems value="#{purchaseBean.lstComponent}"/>
+                        </h:selectOneMenu>
+                        <p:outputLabel for="txtQuantity" value="Cantidad:"/>
+                        <p:inputText id="txtQuantity" value="#{purchaseBean.quantity}"/>
+                        <p:commandButton value="Agregar" actionListener="#{purchaseBean.addComponentPurchase()}" update="data total"/>
+                    </p:panelGrid>
+                    
+                    <p:dataTable id="data" value="#{purchaseBean.lstPurchase}" var="detail">
+                        <p:column headerText="Producto">
+                            <h:outputLabel value="#{detail.component.modeName}"/>
+                        </p:column>
+                        <p:column headerText="Cantidad">
+                            <h:outputLabel value="#{detail.quantity}"/>
+                        </p:column>       
+                        <p:column headerText="Precio">
+                            <h:outputLabel value="#{detail.component.pricePurchase}"/>
+                        </p:column>
+                        <p:column headerText="Subtotal">
+                            <h:outputLabel value="#{detail.charge}"/>
+                        </p:column>
+                    </p:dataTable>
+                    
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Total"/>
+                        <p:outputLabel id="total" value="#{purchaseBean.total}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="Guardar compra" actionListener="#{purchaseBean.insert()}"/>
+                </h:form>
+                
+               
             </ui:define>
 
         </ui:composition>
