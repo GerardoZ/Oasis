@@ -47,7 +47,7 @@ public class ComponentDAO extends DAO{
                 Component c = new Component();
                 c.setComponent_id(rs.getInt("component_id"));
                 c.setCode(rs.getString("code"));
-                c.setModeName(rs.getString("modeName"));
+                c.setModeName(rs.getString("modName"));
                 c.setType(rs.getString("type"));
                 c.setStock(rs.getInt("stock"));
                 c.setPriceSale(rs.getDouble("priceSale"));

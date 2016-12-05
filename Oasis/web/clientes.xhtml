@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
@@ -12,7 +14,83 @@
             </ui:define>
 
             <ui:define name="content">
-                content
+                <h:form id="frm1">
+             <h1>Gestion de clientes</h1>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="txtNombre" value="Nombre:"/>
+                <p:inputText id="txtNombre" value="#{clienteBean.alumno.nombre}"/>
+                <p:outputLabel for="txtMail" value="E-mail:"/>
+                <p:inputText id="txtMail" value="#{clienteBean.alumno.e_mail}"/>
+                <p:outputLabel for="txtDireccion" value="Direccion:"/>
+                <p:inputText id="txtDireccion" value="#{clienteBean.alumno.direccion}"/>
+                <p:outputLabel for="txtColonia" value="Colonia:"/>
+                <p:inputText id="txtColonia" value="#{clienteBean.alumno.colonia}"/>
+                <p:outputLabel for="txtCp" value="Codigo Postal:"/>
+                <p:inputText id="txtCp" value="#{clienteBean.alumno.codigoPostal}"/>
+                <p:outputLabel for="txtTel" value="Telefono:"/>
+                <p:inputText id="txtTel" value="#{clienteBean.alumno.telefono}"/>
+              
+            </p:panelGrid>
+             <br></br>
+             <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}"/>
+             <p:commandButton value="Consultar" actionListener="#{clienteBean.listar()}" update="datos"/>
+             
+             <br></br>
+             <br></br>
+             <br></br>
+             
+             <p:dataTable id="datos" value="#{clienteBean.lstAlumno}" var="alumno">
+                <p:column headerText="Id_Cliente">
+                    <p:outputLabel value="#{alumno.costumer_id}"/>
+                </p:column>
+            <p:column headerText="Nombre">
+                <p:outputLabel value="#{alumno.nombre}"/>
+                </p:column>
+                <p:column headerText="Correo Electronico">
+                    <p:outputLabel value="#{alumno.e_mail}"/>
+                </p:column>
+                <p:column headerText="Direccion">
+                    <p:outputLabel value="#{alumno.direccion}"/>
+                </p:column>
+                <p:column headerText="Colonia">
+                    <p:outputLabel value="#{alumno.colonia}"/>
+                </p:column>
+                <p:column headerText="CP">
+                    <p:outputLabel value="#{alumno.codigoPostal}"/>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <p:outputLabel value="#{alumno.telefono}"/>
+                </p:column>
+                 <p:column headerText="Modificar">
+                     <p:commandLink value="Modificar" actionListener="#{clienteBean.leerID(alumno)}" oncomplete="PF('dlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar">
+                    <p:commandLink value="Eliminar" actionListener="#{clienteBean.eliminar(alumno)}" update="datos"/>
+                </p:column>
+            </p:dataTable>
+         </h:form>
+        
+        <p:dialog header="Datos" widgetVar="dlgDatos" id="dlgDatos">
+        <h:form id="frm2">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="txtNombre" value="Nombre:"/>
+                <p:inputText id="txtNombre" value="#{clienteBean.alumno.nombre}"/>
+                <p:outputLabel for="txtMail" value="E-mail:"/>
+                <p:inputText id="txtMail" value="#{clienteBean.alumno.e_mail}"/>
+                <p:outputLabel for="txtDireccion" value="Direccion:"/>
+                <p:inputText id="txtDireccion" value="#{clienteBean.alumno.direccion}"/>
+                <p:outputLabel for="txtColonia" value="Colonia:"/>
+                <p:inputText id="txtColonia" value="#{clienteBean.alumno.colonia}"/>
+                <p:outputLabel for="txtCp" value="Codigo Postal:"/>
+                <p:inputText id="txtCp" value="#{clienteBean.alumno.codigoPostal}"/>
+                <p:outputLabel for="txtTel" value="Telefono:"/>
+                <p:inputText id="txtTel" value="#{clienteBean.alumno.telefono}"/>
+                <p:commandButton value="Modificar" actionListener="#{clienteBean.modificar()}"
+                                 oncomplete="PF('dlgDatos').hide();" update=":frm1:datos"/>
+            </p:panelGrid>    
+            
+        </h:form>
+        </p:dialog>
             </ui:define>
 
         </ui:composition>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./mainTemplate.xhtml">
+
+            <ui:define name="top">
+                <center><h1>Bienvenido</h1></center>
+            </ui:define>
+
+            <ui:define name="content">
+                 <h:form id="frm1">
+            <h1 align="center">Introduce tu nombre y Contraseña</h1>
+            <center>
+            <p:panelGrid columns="2" >
+                <p:outputLabel for="txtNombre" value="Nombre:"/>
+                <p:inputText id="txtNombre" value="Skynet"/>
+                <p:outputLabel for="txtPass" value="Contraseña:"/>
+                <p:inputText id="txtPass" value="123456" type="password"/> 
+            </p:panelGrid>
+                <br>
+                </br>
+                <button><h:link outcome="clientes" value="Entrar" type="button"/></button>
+                
+                
+            </center>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

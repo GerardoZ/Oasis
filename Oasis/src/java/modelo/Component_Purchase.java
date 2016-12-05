@@ -11,6 +11,7 @@ package modelo;
  */
 public class Component_Purchase {
     private Component component;
+    private int purchase_id;
     private double charge;
     private int quantity;
 
