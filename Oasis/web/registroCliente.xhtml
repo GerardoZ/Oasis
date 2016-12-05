@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./fromTemplate.xhtml">
+
+            <ui:define name="content">
+                
+                     <h:form id="frm1">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="txtNombre" value="Nombre:"/>
+                <p:inputText id="txtNombre" value="#{clienteBean.alumno.nombre}"/>
+                <p:outputLabel for="email" value="Correo electronico:"/>
+                <p:inputText id="email" value="#{clienteBean.alumno.e_mail}"/>
+                <p:outputLabel for="colonia" value="Colonia"/>
+                <p:inputText id="colonia" value="#{clienteBean.alumno.colonia}"/>
+                <p:outputLabel for="calle" value="Calle y numero:"/>
+                <p:inputText id="calle" value="#{clienteBean.alumno.direccion}"/>               
+                <p:outputLabel for="cp" value="Codigo Postal:"/>
+                <p:inputText id="cp" value="#{clienteBean.alumno.codigoPostal}"/>
+                <p:outputLabel for="telefono" value="Telefono:"/>
+                <p:inputText id="telefono" value="#{clienteBean.alumno.telefono}"/>
+
+                <p:commandButton value="Continuar" actionListener="#{clienteBean.registrar()}" oncomplete="PF('dlgDatos').show();"/>
+                
+                
+                
+            </p:panelGrid>
+        </h:form>
+                
+        <p:dialog header="Informacion de pago" widgetVar="dlgDatos" id="dlgDatos">
+            <h:form id="frm2">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="banco" value="Banco:"/>
+                <p:inputText id="banco" value="#{pagoBean.pago.bank}"/>
+                <p:outputLabel for="lastFour" value="Ultimos 4 digitos:"/>
+                <p:inputText id="lastFour" value="#{pagoBean.pago.lastFour}"/>
+                <p:outputLabel for="num" value="Numero de tarjeta:"/>
+                <p:inputText id="num" value="#{pagoBean.pago.num}"/>
+                <p:outputLabel for="mes" value="Mes de expiración:"/>
+                <p:inputText id="mes" value="#{pagoBean.pago.monthExpiration}"/>
+                <p:outputLabel for="ano" value="Año de expiración:"/>
+                <p:inputText id="ano" value="#{pagoBean.pago.yearExpiration}"/>     
+                <p:outputLabel for="secCode" value="Codigo de Seguridad:"/>
+                <p:inputText id="secCode" value="#{pagoBean.pago.secCode}"/>
+                <p:commandButton value="Registrar" actionListener="#{pagoBean.registrarPago()}"/>
+
+                
+            </p:panelGrid>
+            </h:form>
+        </p:dialog>
+                
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
