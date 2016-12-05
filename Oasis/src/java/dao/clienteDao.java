@@ -9,6 +9,7 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Cliente;
@@ -20,10 +21,12 @@ import modelo.Cliente;
 public class clienteDao extends DAO {
      public void registrar(Cliente client)throws Exception{
         try {
+            int id_client = 0;
             this.Conectar();
+            ResultSet rs;
             PreparedStatement st= this.getCon().prepareStatement(""
                     + "insert into customers(name,email,streetAndNumber,neighborhood,zipCode,phone) values"  //CHECAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                    + "(?,?,?,?,?,?)");
+                    + "(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, client.getNombre());
             st.setString(2, client.getE_mail());
             st.setString(3, client.getDireccion());
@@ -31,6 +34,9 @@ public class clienteDao extends DAO {
             st.setString(5, client.getCodigoPostal());
             st.setString(6, client.getTelefono());
             st.executeUpdate();
+            rs = st.getGeneratedKeys();
+            rs.first();
+            id_client = rs.getInt(1);
             
         } catch (Exception e) {
             System.out.println("error: "+e);
