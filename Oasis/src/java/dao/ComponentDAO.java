@@ -122,4 +122,27 @@ public class ComponentDAO extends DAO{
             this.Cerrar();
         }
     }
+    
+    public Component getComponent(int id)throws Exception{
+        Component c = null;
+        try{
+            this.Conectar();
+            ResultSet rs;
+            PreparedStatement st = this.getCon().prepareStatement("select * from components where component_id = ?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            while(rs.next()){
+                c = new Component();
+                c.setComponent_id(rs.getInt("component_id"));
+                c.setModeName(rs.getString("modName"));
+            }
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+        } finally{
+            this.Cerrar();
+        }
+                    
+        return c;
+
+    }
 }

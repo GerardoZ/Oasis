@@ -24,7 +24,8 @@ public class ComponentBean {
     /**
      * Creates a new instance of ComponentBean
      */
-    public ComponentBean() {
+    public ComponentBean() throws Exception {
+        this.show();
     }
 
     public Component getComponent() {

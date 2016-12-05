@@ -40,6 +40,12 @@
                 <p:dialog header="Datos" widgetVar="dlgDatos" id="dlgDatos">
                     <h:form id='udpate'>
                         <p:dataTable value="#{ordersBean.lstDetails}" var="detail">
+                            <p:column headerText="Producto">
+                                <p:outputLabel value="#{detail.component.modeName}"/>
+                            </p:column>
+                            <p:column headerText="Precio de compra">
+                                <p:outputLabel value="#{detail.component.pricePurchase}"/>
+                            </p:column>
                             <p:column headerText="Cantidad">
                                 <p:outputLabel value="#{detail.quantity}"/>
                             </p:column>

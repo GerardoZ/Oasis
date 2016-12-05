@@ -22,7 +22,8 @@ public class clienteBean {
 
     private Cliente alumno=new Cliente();
     private  List <Cliente> lstAlumno;
-    public clienteBean() {
+    public clienteBean() throws Exception {
+        this.listar();
     }
 
     public Cliente getAlumno() {
