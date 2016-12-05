@@ -78,4 +78,26 @@ public class ComponentBean {
         }
     }
     
+    public void update() throws Exception{
+        ComponentDAO dao;
+        try{
+            dao = new ComponentDAO();
+            dao.update(component);
+            this.show();
+        } catch(Exception e){
+            throw e;
+        }
+    }
+    
+    public void delete(Component c)throws Exception{
+        ComponentDAO dao;
+        try{
+            dao = new ComponentDAO();
+            dao.delete(c);
+            this.show();
+        } catch(Exception e){
+            throw e;
+        }
+    }
+    
 }

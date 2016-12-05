@@ -47,7 +47,7 @@ public class ComponentDAO extends DAO{
                 Component c = new Component();
                 c.setComponent_id(rs.getInt("component_id"));
                 c.setCode(rs.getString("code"));
-                c.setModeName(rs.getString("modeName"));
+                c.setModeName(rs.getString("modName"));
                 c.setType(rs.getString("type"));
                 c.setStock(rs.getInt("stock"));
                 c.setPriceSale(rs.getDouble("priceSale"));
@@ -93,7 +93,7 @@ public class ComponentDAO extends DAO{
     public void update(Component c)throws Exception{
         try{
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("update components set code=?,modName=?,type=?,stock=?,priceSale=?,pricePurchase=?,compatibility=?");
+            PreparedStatement st = this.getCon().prepareStatement("update components set code=?,modName=?,type=?,stock=?,priceSale=?,pricePurchase=?,compatibility=? where component_id=?");
             st.setString(1, c.getCode());
             st.setString(2, c.getModeName());
             st.setString(3, c.getType());
@@ -101,6 +101,7 @@ public class ComponentDAO extends DAO{
             st.setDouble(5, c.getPriceSale());
             st.setDouble(6, c.getPricePurchase());
             st.setInt(7, c.getCompatibility());
+            st.setInt(8, c.getComponent_id());
             st.executeUpdate();
         } catch(Exception e){
             System.out.println("Erros: " + e);

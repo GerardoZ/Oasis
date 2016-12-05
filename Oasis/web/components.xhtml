@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -18,59 +19,96 @@
                     <p:panelGrid columns="2">
                         <p:outputLabel for="txtCode" value="Código:"/>
                         <p:inputText id="txtCode" value="#{componentBean.component.code}"/>
-                        <p:outputLabel for="txtName" value="Nombre:"/>
-                        <p:inputText id="txtName" value="#{supplierBean.supplier.name}"/>
-                        <p:outputLabel for="txtEmail" value="Correo electrónico:"/>
-                        <p:inputText id="txtEmail" value="#{supplierBean.supplier.email}"/>
-                        <p:outputLabel for="txtContactName" value="Nombre de contacto:"/>
-                        <p:inputText id="txtContactName" value="#{supplierBean.supplier.contactName}"/>
-                        <p:outputLabel for="txtContactPhone" value="Teléfono de contacto:"/>
-                        <p:inputText id="txtContactPhone" value="#{supplierBean.supplier.contactPhone}"/>
-                        <p:commandButton value="Guardar" actionListener="#{supplierBean.insert()}" update="data"/>
+                        <p:outputLabel for="txtModName" value="Modelo:"/>
+                        <p:inputText id="txtModName" value="#{componentBean.component.modeName}"/>
+                        <p:outputLabel for="slcType" value="Tipo:"/>
+                        <p:selectOneMenu id="slcType" value="#{componentBean.component.type}">
+                            <f:selectItem itemLabel="Memoria Ram" itemValue="Memoria Ram"/>
+                            <f:selectItem itemLabel="DiscoDuro" itemValue="DiscoDuro"/>
+                            <f:selectItem itemLabel="Procesador" itemValue="Procesador"/>
+                            <f:selectItem itemLabel="Tarjeta madre" itemValue="Tarjeta madre"/>
+                            <f:selectItem itemLabel="Tarjeta grafica" itemValue="Tarjeta grafica"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="txtStock" value="Inventario:"/>
+                        <p:inputText id="txtStock" value="#{componentBean.component.stock}"/>
+                        <p:outputLabel for="txtPriceSale" value="Precio de venta:"/>
+                        <p:inputText id="txtPriceSale" value="#{componentBean.component.priceSale}"/>
+                        <p:outputLabel for="txtPricePurchase" value="Precio de compra:"/>
+                        <p:inputText id="txtPricePurchase" value="#{componentBean.component.pricePurchase}"/>
+                        <p:outputLabel for="slcComp" value="Compatibilidad"/>
+                        <p:selectOneMenu id="slcComp" value="#{componentBean.component.compatibility}">
+                            <f:selectItem itemLabel="1" itemValue="1"/>
+                            <f:selectItem itemLabel="2" itemValue="2"/>
+                            <f:selectItem itemLabel="3" itemValue="3"/>
+                            <f:selectItem itemLabel="4" itemValue="4"/>
+                        </p:selectOneMenu>
+                        <p:commandButton value="Guardar" actionListener="#{componentBean.insert()}" update="data"/>
                     </p:panelGrid>
 
 
-                    <p:dataTable id="data" value="#{supplierBean.lstSuppliers}" var="supplier">
+                    <p:dataTable id="data" value="#{componentBean.lstComponents}" var="c">
                         <p:column headerText="ID">
-                            <p:outputLabel value="#{supplier.supplier_id}"/>
+                            <p:outputLabel value="#{c.component_id}"/>
                         </p:column>
-                        <p:column headerText="RFC">
-                            <p:outputLabel value="#{supplier.rfc}"/>
+                        <p:column headerText="Código">
+                            <p:outputLabel value="#{c.code}"/>
                         </p:column>
-                        <p:column headerText="Nombre">
-                            <p:outputLabel value="#{supplier.name}"/>
+                        <p:column headerText="Modelo">
+                            <p:outputLabel value="#{c.modeName}"/>
                         </p:column>
-                        <p:column headerText="Correo">
-                            <p:outputLabel value="#{supplier.email}"/>
+                        <p:column headerText="Tipo">
+                            <p:outputLabel value="#{c.type}"/>
                         </p:column>
-                        <p:column headerText="Nombre de contacto">
-                            <p:outputLabel value="#{supplier.contactName}"/>                    
+                        <p:column headerText="Inventario">
+                            <p:outputLabel value="#{c.stock}"/>
                         </p:column>
-                        <p:column headerText="Teléfono de contacto">
-                            <p:outputLabel value="#{supplier.contactPhone}"/>
+                        <p:column headerText="Precio de compra">
+                            <p:outputLabel value="#{c.priceSale}"/>
                         </p:column>
+                        <p:column headerText="Precio de venta">
+                            <p:outputLabel value="#{c.pricePurchase}"/>
+                        </p:column>
+                        <p:column headerText="Compatibilidad">
+                            <p:outputLabel value="#{c.compatibility}"/>
+                        </p:column>
+                        
                         <p:column headerText="Modificar">
-                            <p:commandLink value="Modificar" actionListener="#{supplierBean.read(supplier)}" oncomplete="PF('dlgDatos').show();" update=":dlgDatos"/>
+                            <p:commandLink value="Modificar" actionListener="#{componentBean.read(c)}" oncomplete="PF('dlgDatos').show();" update=":dlgDatos"/>
                         </p:column>
                         <p:column headerText="Eliminar">
-                            <p:commandLink value="Eliminar" actionListener="#{supplierBean.delete(supplier)}" update="data"/>
+                            <p:commandLink value="Eliminar" actionListener="#{componentBean.delete(c)}" update="data"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
                 <p:dialog header="Datos" widgetVar="dlgDatos" id="dlgDatos">
                     <h:form id='udpate'>
                         <p:panelGrid columns="2">
-                            <p:outputLabel for="txtRFC" value="RFC:"/>
-                            <p:inputText id="txtRFC" value="#{supplierBean.supplier.rfc}"/>
-                            <p:outputLabel for="txtName" value="Nombre:"/>
-                            <p:inputText id="txtName" value="#{supplierBean.supplier.name}"/>
-                            <p:outputLabel for="txtEmail" value="Correo electrónico:"/>
-                            <p:inputText id="txtEmail" value="#{supplierBean.supplier.email}"/>
-                            <p:outputLabel for="txtContactName" value="Nombre de contacto:"/>
-                            <p:inputText id="txtContactName" value="#{supplierBean.supplier.contactName}"/>
-                            <p:outputLabel for="txtContactPhone" value="Teléfono de contacto:"/>
-                            <p:inputText id="txtContactPhone" value="#{supplierBean.supplier.contactPhone}"/>
-                            <p:commandButton value="Modificar" actionListener="#{supplierBean.update()}" oncomplete="PF('dlgDatos').hide();" update=":insert:data"/>
+                            <p:outputLabel for="txtCode" value="Código:"/>
+                        <p:inputText id="txtCode" value="#{componentBean.component.code}"/>
+                        <p:outputLabel for="txtModName" value="Modelo:"/>
+                        <p:inputText id="txtModName" value="#{componentBean.component.modeName}"/>
+                        <p:outputLabel for="slcType" value="Tipo:"/>
+                        <p:selectOneMenu id="slcType" value="#{componentBean.component.type}">
+                            <f:selectItem itemLabel="Memoria Ram" itemValue="Memoria Ram"/>
+                            <f:selectItem itemLabel="DiscoDuro" itemValue="DiscoDuro"/>
+                            <f:selectItem itemLabel="Procesador" itemValue="Procesador"/>
+                            <f:selectItem itemLabel="Tarjeta madre" itemValue="Tarjeta madre"/>
+                            <f:selectItem itemLabel="Tarjeta grafica" itemValue="Tarjeta grafica"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="txtStock" value="Inventario:"/>
+                        <p:inputText id="txtStock" value="#{componentBean.component.stock}"/>
+                        <p:outputLabel for="txtPriceSale" value="Precio de venta:"/>
+                        <p:inputText id="txtPriceSale" value="#{componentBean.component.priceSale}"/>
+                        <p:outputLabel for="txtPricePurchase" value="Precio de compra:"/>
+                        <p:inputText id="txtPricePurchase" value="#{componentBean.component.pricePurchase}"/>
+                        <p:outputLabel for="slcComp" value="Compatibilidad"/>
+                        <p:selectOneMenu id="slcComp" value="#{componentBean.component.compatibility}">
+                            <f:selectItem itemLabel="1" itemValue="1"/>
+                            <f:selectItem itemLabel="2" itemValue="2"/>
+                            <f:selectItem itemLabel="3" itemValue="3"/>
+                            <f:selectItem itemLabel="4" itemValue="4"/>
+                        </p:selectOneMenu>
+                        <p:commandButton value="Modificar" actionListener="#{componentBean.update()}" oncomplete="PF('dlgDatos').hide();" update=":insert:data"/>
                         </p:panelGrid>
                     </h:form>
                 </p:dialog>
