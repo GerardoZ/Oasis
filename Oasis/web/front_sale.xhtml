@@ -11,6 +11,11 @@
         <ui:composition template="./frontTemplate.xhtml">
 
             <ui:define name="content">
+                  <h:form>
+                     <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                </h:form>
+                <h1>Comprar</h1>
                 <h:form>
                     <h:selectOneMenu value="#{saleBean.selectedComputer}">
                     <f:selectItems value="#{saleBean.lstComputers}"/>
@@ -52,7 +57,7 @@
                 </p:panelGrid>
                 
                 <br></br>
-                <p:commandButton value="Comprar"/>
+                <p:commandButton value="Comprar" actionListener="#{saleBean.insert}" update="data total"/>
                 </h:form>
 
             </ui:define>

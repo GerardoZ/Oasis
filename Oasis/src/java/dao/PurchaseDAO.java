@@ -71,12 +71,13 @@ public class PurchaseDAO extends DAO{
         ResultSet rs;
         try{
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("select * from purchases");
+            PreparedStatement st = this.getCon().prepareStatement("select * from purchases inner join suppliers");
             rs = st.executeQuery();
             while(rs.next()){
                 Purchase p = new Purchase();
                 p.setPurchase_id(rs.getInt("purchase_id"));
                 p.setSupplier_id(rs.getInt("supplier_id"));
+                p.setSupplier_name(rs.getString("name"));
                 p.setDate(rs.getDate("date"));
                 p.setTotal(rs.getDouble("total"));
                 list.add(p);
@@ -87,6 +88,17 @@ public class PurchaseDAO extends DAO{
             this.Cerrar();
         }
         return list;
+    }
+    
+    public void delete(Purchase p) throws Exception{
+        try{
+            this.Conectar();
+            PreparedStatement st = getCon().prepareStatement("delete from purchases where purchase_id = ?");
+            st.setInt(1, p.getPurchase_id());
+            st.executeUpdate();
+        } catch(Exception e){
+            System.out.println("Error: " + e);
+        }
     }
     
     public List<Component_Purchase> readDetails(Purchase p)throws Exception{

@@ -19,7 +19,7 @@ import modelo.Cliente;
  * @author Christopher
  */
 public class clienteDao extends DAO {
-    static int id_client = 0;
+    static int id_client = 1;
     
      public void registrar(Cliente client)throws Exception{
         try {
@@ -90,6 +90,7 @@ public class clienteDao extends DAO {
             
             while(rs.next()){
                 clients=new Cliente();
+                clients.setCostumer_id(rs.getInt("customer_id"));
                 clients.setNombre(rs.getString("name"));
                 clients.setE_mail(rs.getString("email"));
                 clients.setDireccion(rs.getString("streetAndNumber"));

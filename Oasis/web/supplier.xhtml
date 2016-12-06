@@ -14,25 +14,32 @@
             </ui:define>
 
             <ui:define name="content">
+                 <h:form>
+                     <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                </h:form>
                  <h:form id="insert">
                     <h1>GESTIÓN DE PROVEEDORES</h1>
 
                     <p:panelGrid columns="2">
                         <p:outputLabel for="txtRFC" value="RFC:"/>
-                        <p:inputText id="txtRFC" value="#{supplierBean.supplier.rfc}"/>
+                        <p:inputText id="txtRFC" value="#{supplierBean.supplier.rfc}" required="true"/>
                         <p:outputLabel for="txtName" value="Nombre:"/>
-                        <p:inputText id="txtName" value="#{supplierBean.supplier.name}"/>
+                        <p:inputText id="txtName" value="#{supplierBean.supplier.name}" required="true"/>
                         <p:outputLabel for="txtEmail" value="Correo electrónico:"/>
-                        <p:inputText id="txtEmail" value="#{supplierBean.supplier.email}"/>
+                        <p:inputText id="txtEmail" value="#{supplierBean.supplier.email}" required="true"/>
                         <p:outputLabel for="txtContactName" value="Nombre de contacto:"/>
-                        <p:inputText id="txtContactName" value="#{supplierBean.supplier.contactName}"/>
+                        <p:inputText id="txtContactName" value="#{supplierBean.supplier.contactName}" required="true"/>
                         <p:outputLabel for="txtContactPhone" value="Teléfono de contacto:"/>
                         <p:inputText id="txtContactPhone" value="#{supplierBean.supplier.contactPhone}"/>
-                        <p:commandButton value="Guardar" actionListener="#{supplierBean.insert()}" update="data"/>
                     </p:panelGrid>
-
-
-                    <p:dataTable id="data" value="#{supplierBean.lstSuppliers}" var="supplier">
+                    <br></br>
+                    <p:commandButton value="Guardar" actionListener="#{supplierBean.insert()}" update=":frmData:data"/>
+                    <br></br>
+                    <br></br>                  
+                </h:form>
+                <h:form id="frmData">
+                     <p:dataTable id="data" value="#{supplierBean.lstSuppliers}" var="supplier">
                         <p:column headerText="ID">
                             <p:outputLabel value="#{supplier.supplier_id}"/>
                         </p:column>
@@ -63,16 +70,16 @@
                     <h:form id='udpate'>
                         <p:panelGrid columns="2">
                             <p:outputLabel for="txtRFC" value="RFC:"/>
-                            <p:inputText id="txtRFC" value="#{supplierBean.supplier.rfc}"/>
+                            <p:inputText id="txtRFC" value="#{supplierBean.supplier.rfc}" required="true"/>
                             <p:outputLabel for="txtName" value="Nombre:"/>
-                            <p:inputText id="txtName" value="#{supplierBean.supplier.name}"/>
+                            <p:inputText id="txtName" value="#{supplierBean.supplier.name}" required="true"/>
                             <p:outputLabel for="txtEmail" value="Correo electrónico:"/>
-                            <p:inputText id="txtEmail" value="#{supplierBean.supplier.email}"/>
+                            <p:inputText id="txtEmail" value="#{supplierBean.supplier.email}" required="true"/>
                             <p:outputLabel for="txtContactName" value="Nombre de contacto:"/>
-                            <p:inputText id="txtContactName" value="#{supplierBean.supplier.contactName}"/>
+                            <p:inputText id="txtContactName" value="#{supplierBean.supplier.contactName}" required="true"/>
                             <p:outputLabel for="txtContactPhone" value="Teléfono de contacto:"/>
                             <p:inputText id="txtContactPhone" value="#{supplierBean.supplier.contactPhone}"/>
-                            <p:commandButton value="Modificar" actionListener="#{supplierBean.update()}" oncomplete="PF('dlgDatos').hide();" update=":insert:data"/>
+                            <p:commandButton value="Modificar" actionListener="#{supplierBean.update()}" oncomplete="PF('dlgDatos').hide();" update=":frmData:data"/>
                         </p:panelGrid>
                     </h:form>
                 </p:dialog>

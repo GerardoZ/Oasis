@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Component;
 import modelo.Component_Purchase;
 import modelo.Purchase;
@@ -174,14 +176,27 @@ public class PurchaseBean {
     }
     
     public void insert()throws Exception{
-        int supplier_id = Integer.parseInt(this.supplier.split(" ")[0]);
-        PurchaseDAO dao;
-        try{
-            dao = new PurchaseDAO();
-            dao.insert(lstPurchase, total, supplier_id);
-        } catch(Exception e){
-            throw e;
+        if(lstPurchase.size() < 1){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Agrega al menos un producto."));
         }
+        else{
+            int supplier_id = Integer.parseInt(this.supplier.split(" ")[0]);
+            PurchaseDAO dao;
+            try{
+                dao = new PurchaseDAO();
+                dao.insert(lstPurchase, total, supplier_id);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Compra registrada exitosamente."));
+                this.clear();
+
+            } catch(Exception e){
+                throw e;
+            }
+        }
+        
+    }
+    
+    public void clear(){
+        this.lstPurchase = new ArrayList<>();
     }
 
     

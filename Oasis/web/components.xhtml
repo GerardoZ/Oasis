@@ -15,14 +15,18 @@
             </ui:define>
 
             <ui:define name="content">
+                <h:form>
+                     <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                </h:form>
                 <h:form id="insert">
                     <h1>GESTIÓN DE COMPONENTES</h1>
 
                     <p:panelGrid columns="2">
                         <p:outputLabel for="txtCode" value="Código:"/>
-                        <p:inputText id="txtCode" value="#{componentBean.component.code}"/>
+                        <p:inputText id="txtCode" value="#{componentBean.component.code}" required="true"/>
                         <p:outputLabel for="txtModName" value="Modelo:"/>
-                        <p:inputText id="txtModName" value="#{componentBean.component.modeName}"/>
+                        <p:inputText id="txtModName" value="#{componentBean.component.modeName}" required="true"/>
                         <p:outputLabel for="slcType" value="Tipo:"/>
                         <p:selectOneMenu id="slcType" value="#{componentBean.component.type}">
                             <f:selectItem itemLabel="Memoria Ram" itemValue="Memoria Ram"/>
@@ -34,9 +38,9 @@
                         <p:outputLabel for="txtStock" value="Inventario:"/>
                         <p:inputText id="txtStock" value="#{componentBean.component.stock}"/>
                         <p:outputLabel for="txtPriceSale" value="Precio de venta:"/>
-                        <p:inputText id="txtPriceSale" value="#{componentBean.component.priceSale}"/>
+                        <p:inputText id="txtPriceSale" value="#{componentBean.component.priceSale}" required="true"/>
                         <p:outputLabel for="txtPricePurchase" value="Precio de compra:"/>
-                        <p:inputText id="txtPricePurchase" value="#{componentBean.component.pricePurchase}"/>
+                        <p:inputText id="txtPricePurchase" value="#{componentBean.component.pricePurchase}" required="true"/>
                         <p:outputLabel for="slcComp" value="Compatibilidad"/>
                         <p:selectOneMenu id="slcComp" value="#{componentBean.component.compatibility}">
                             <f:selectItem itemLabel="1" itemValue="1"/>
@@ -44,9 +48,17 @@
                             <f:selectItem itemLabel="3" itemValue="3"/>
                             <f:selectItem itemLabel="4" itemValue="4"/>
                         </p:selectOneMenu>
-                        <p:commandButton value="Guardar" actionListener="#{componentBean.insert()}" update="data"/>
                     </p:panelGrid>
+                    <br></br>
+                    <p:commandButton value="Guardar" actionListener="#{componentBean.insert()}" update=":frmData:data"/>
 
+
+                </h:form>
+                
+                <br></br>
+                <br></br>
+                <h:form id="frmData">
+                    
 
                     <p:dataTable id="data" value="#{componentBean.lstComponents}" var="c">
                         <p:column headerText="ID">
@@ -85,10 +97,10 @@
                 <p:dialog header="Datos" widgetVar="dlgDatos" id="dlgDatos">
                     <h:form id='udpate'>
                         <p:panelGrid columns="2">
-                            <p:outputLabel for="txtCode" value="Código:"/>
-                        <p:inputText id="txtCode" value="#{componentBean.component.code}"/>
+                        <p:outputLabel for="txtCode" value="Código:"/>
+                        <p:inputText id="txtCode" value="#{componentBean.component.code}" required="true"/>
                         <p:outputLabel for="txtModName" value="Modelo:"/>
-                        <p:inputText id="txtModName" value="#{componentBean.component.modeName}"/>
+                        <p:inputText id="txtModName" value="#{componentBean.component.modeName}" required="true"/>
                         <p:outputLabel for="slcType" value="Tipo:"/>
                         <p:selectOneMenu id="slcType" value="#{componentBean.component.type}">
                             <f:selectItem itemLabel="Memoria Ram" itemValue="Memoria Ram"/>
@@ -100,9 +112,9 @@
                         <p:outputLabel for="txtStock" value="Inventario:"/>
                         <p:inputText id="txtStock" value="#{componentBean.component.stock}"/>
                         <p:outputLabel for="txtPriceSale" value="Precio de venta:"/>
-                        <p:inputText id="txtPriceSale" value="#{componentBean.component.priceSale}"/>
+                        <p:inputText id="txtPriceSale" value="#{componentBean.component.priceSale}" required="true"/>
                         <p:outputLabel for="txtPricePurchase" value="Precio de compra:"/>
-                        <p:inputText id="txtPricePurchase" value="#{componentBean.component.pricePurchase}"/>
+                        <p:inputText id="txtPricePurchase" value="#{componentBean.component.pricePurchase}" required="true"/>
                         <p:outputLabel for="slcComp" value="Compatibilidad"/>
                         <p:selectOneMenu id="slcComp" value="#{componentBean.component.compatibility}">
                             <f:selectItem itemLabel="1" itemValue="1"/>
@@ -110,8 +122,8 @@
                             <f:selectItem itemLabel="3" itemValue="3"/>
                             <f:selectItem itemLabel="4" itemValue="4"/>
                         </p:selectOneMenu>
-                        <p:commandButton value="Modificar" actionListener="#{componentBean.update()}" oncomplete="PF('dlgDatos').hide();" update=":insert:data"/>
-                        </p:panelGrid>
+                    </p:panelGrid>
+                        <p:commandButton value="Modificar" actionListener="#{componentBean.update()}" oncomplete="PF('dlgDatos').hide();" update=":frmData:data"/>
                     </h:form>
                 </p:dialog>
             </ui:define>

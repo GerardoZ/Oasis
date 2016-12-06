@@ -8,8 +8,10 @@ package bean;
 
 import dao.clienteDao;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Cliente;
 
 /**
@@ -49,6 +51,8 @@ public class ClienteBean {
             dao=new clienteDao();
             dao.registrar(alumno);
             this.listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Cliente registrado exitosamente."));
+            this.clear();
         } catch (Exception e) {
             throw e;
         }
@@ -86,6 +90,8 @@ public class ClienteBean {
             dao=new clienteDao();
             dao.modificar(alumno);
            this.listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Cliente modificado exitosamente."));
+
         } catch (Exception e) {
             throw e;
         }
@@ -96,11 +102,25 @@ public class ClienteBean {
         try {
             dao=new clienteDao();
             dao.eliminar(alum);
-           this.listar();
+            this.listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Cliente eliminado exitosamente."));
+
         } catch (Exception e) {
             throw e;
         }
     }
+   
+   public void clear(){
+       this.alumno.setNombre("");
+       this.alumno.setE_mail("");
+       this.alumno.setPassword("");
+       this.alumno.setDireccion("");
+       this.alumno.setColonia("");
+       this.alumno.setCodigoPostal("");
+       this.alumno.setTelefono("");
+   }
+   
+   
     
   
 }

@@ -14,6 +14,10 @@
             </ui:define>
 
             <ui:define name="content">
+                  <h:form>
+                     <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                </h:form>
                 <h:form>
                     <h1>ÓRDENES DE COMPRA</h1>
 
@@ -22,7 +26,7 @@
                             <p:outputLabel value="#{purchase.purchase_id}"/>
                         </p:column>
                         <p:column headerText="Proveedor">
-                            <p:outputLabel value="#{purchase.supplier_id}"/>
+                            <p:outputLabel value="#{purchase.supplier_name}"/>
                         </p:column>
                         <p:column headerText="Fecha">
                             <p:outputLabel value="#{purchase.date}"/>
@@ -34,7 +38,7 @@
                             <p:commandButton value="Ver" actionListener="#{ordersBean.read(purchase)}" oncomplete="PF('dlgDatos').show()" update=":dlgDatos"/>
                         </p:column>
                         <p:column headerText="Eliminar">
-                            <p:commandButton value="Eliminar"/>
+                            <p:commandButton value="Eliminar" actionListener="#{ordersBean.delete(purchase)}" update="data"/>
                         </p:column>
                         
                     </p:dataTable>

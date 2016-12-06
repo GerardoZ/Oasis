@@ -14,6 +14,7 @@ import java.sql.Date;
 public class Purchase {
     private int purchase_id;
     private int supplier_id;
+    private String supplier_name;
     private Date date;
     private double total;
 
@@ -32,7 +33,14 @@ public class Purchase {
     public void setSupplier_id(int supplier_id) {
         this.supplier_id = supplier_id;
     }
-    
+
+    public String getSupplier_name() {
+        return supplier_name;
+    }
+
+    public void setSupplier_name(String supplier_name) {
+        this.supplier_name = supplier_name;
+    }  
     
 
     public Date getDate() {

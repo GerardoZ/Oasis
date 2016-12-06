@@ -9,8 +9,10 @@ import dao.ComponentDAO;
 import dao.PurchaseDAO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Component;
 import modelo.Component_Purchase;
 import modelo.Purchase;
@@ -65,6 +67,19 @@ public class OrdersBean {
             dao = new PurchaseDAO();
             lstDetails = dao.readDetails(p);          
         } catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+    }
+    
+    public void delete(Purchase p) throws Exception{
+        PurchaseDAO dao;
+        try{
+            dao = new PurchaseDAO();
+            dao.delete(p);
+            this.getPurchases();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Compra eliminada exitosamente."));
+
+        } catch (Exception e){
             System.out.println("Error: " + e);
         }
     }

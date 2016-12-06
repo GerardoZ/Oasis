@@ -7,8 +7,10 @@ package bean;
 
 import dao.ComponentDAO;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Component;
 
 
@@ -50,6 +52,8 @@ public class ComponentBean {
             dao = new ComponentDAO();
             dao.insert(component);
             this.show();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Componente registrado exitosamente."));
+
         } catch(Exception e){
             throw e;
         }
@@ -85,6 +89,8 @@ public class ComponentBean {
             dao = new ComponentDAO();
             dao.update(component);
             this.show();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Componente modificado exitosamente."));
+
         } catch(Exception e){
             throw e;
         }
@@ -96,9 +102,21 @@ public class ComponentBean {
             dao = new ComponentDAO();
             dao.delete(c);
             this.show();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Componente eliminado exitosamente."));
+
         } catch(Exception e){
             throw e;
         }
+    }
+    
+    public void clear(){
+        this.component.setComponent_id(0);
+        this.component.setCode("");
+        this.component.setModeName("");
+        this.component.setCompatibility(0);
+        this.component.setStock(0);
+        this.component.setPricePurchase(0);
+        this.component.setPriceSale(0);
     }
     
 }

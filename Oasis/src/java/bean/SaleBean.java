@@ -7,11 +7,14 @@ package bean;
 
 import dao.ComponentDAO;
 import dao.ComputerDAO;
+import dao.SaleDAO;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Component;
 import modelo.Computer;
 
@@ -186,6 +189,28 @@ public class SaleBean {
         for (int i = 0; i < lstDetails.size(); i++) {
             total += lstDetails.get(i).getPriceSale();
         }
+    }
+    
+    public void insert() throws Exception{
+        if(this.lstDetails.size() < 1){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debes elegir al menos un producto"));
+        }else{
+            SaleDAO dao;
+        try{
+            dao = new SaleDAO();
+            dao.insert(lstDetails, total);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Tu compra ha sido registrada"));
+            this.clear();
+        } catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        }
+        
+    }
+    
+    public void clear() throws Exception{
+        this.lstDetails = new ArrayList<>();
+        total = 0;
     }
     
     

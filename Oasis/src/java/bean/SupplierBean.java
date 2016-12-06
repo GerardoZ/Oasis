@@ -7,8 +7,10 @@ package bean;
 
 import dao.SupplierDAO;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Supplier;
 
 /**
@@ -53,6 +55,8 @@ public class SupplierBean {
             dao = new SupplierDAO();
             dao.insert(supplier);
             this.show();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Proveedor registrado exitosamente."));
+            this.clear();
         } catch(Exception e){
             throw e;
         }
@@ -89,6 +93,7 @@ public class SupplierBean {
             dao = new SupplierDAO();
             dao.update(supplier);
             this.show();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Proveedor modificado exitosamente."));
         } catch(Exception e){
             throw e;
         }
@@ -100,11 +105,21 @@ public class SupplierBean {
             dao = new SupplierDAO();
             dao.delete(s);
             this.show();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Proveedor eliminado exitosamente."));
+
         } catch(Exception e){
             throw e;
         }
     }
     
+    public void clear(){
+        this.supplier.setSupplier_id(0);
+        this.supplier.setRfc("");
+        this.supplier.setName("");
+        this.supplier.setEmail("");
+        this.supplier.setContactName("");
+        this.supplier.setContactPhone("");
+    }
     
     
 }
