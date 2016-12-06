@@ -19,9 +19,11 @@ import modelo.Cliente;
  * @author Christopher
  */
 public class clienteDao extends DAO {
+    static int id_client = 0;
+    
      public void registrar(Cliente client)throws Exception{
         try {
-            int id_client = 0;
+            
             this.Conectar();
             ResultSet rs;
             PreparedStatement st= this.getCon().prepareStatement(""
@@ -36,7 +38,9 @@ public class clienteDao extends DAO {
             st.executeUpdate();
             rs = st.getGeneratedKeys();
             rs.first();
+            
             id_client = rs.getInt(1);
+            
             
         } catch (Exception e) {
             System.out.println("error: "+e);
