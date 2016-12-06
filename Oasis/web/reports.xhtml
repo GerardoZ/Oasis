@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -13,7 +16,64 @@
 
             <ui:define name="content">
                 <h1>REPORTES</h1>
+                <p:commandButton value="Piezas más vendidas" actionListener="#{reportBean.mostrarReporte1()}" oncomplete="PF('dlgDatos').show();" update=":dlgDatos"/>
+                <p:commandButton value="Empleado del mes" actionListener="#{reportBean.mostrarReporte2()}" oncomplete="PF('dlgDatos2').show();" update=":dlgDatos2"/>
+                <p:commandButton value="Facturas no pagadas" actionListener="#{reportBean.mostrarReporte3()}" oncomplete="PF('dlgDatos3').show();" update=":dlgDatos3"/>
+                <p:commandButton value="Otras mamadas" actionListener="#{reportBean.mostrarReporte1()}" oncomplete="PF('dlgDatos').show();" update=":dlgDatos"/>
+                
+        <p:dialog header="Piezas más vendidas" widgetVar="dlgDatos" id="dlgDatos">
+            <h:form id="frm3">
+                
+            <p:dataTable id="datos" value="#{reportBean.lstReport1}" var="report">
+                <p:column headerText="Nombre">
+                    <p:outputLabel value="#{report.nombre}"/>
+                </p:column>
+            <p:column headerText="Cantidad">
+                <p:outputLabel value="#{report.cantidad}"/>
+                </p:column>
+                <p:column headerText="Precio">
+                    <p:outputLabel value="#{report.precio}"/>
+                </p:column>
+                
+            </p:dataTable>
+            </h:form>
+        </p:dialog>
+                
+        <p:dialog header="Empleado del mes" widgetVar="dlgDatos2" id="dlgDatos2">
+            <h:form id="frm2">
+                
+                <p:dataTable id="datos" value="#{reportBean.lstReport2}" var="report">
+                <p:column headerText="Nombre">
+                    <p:outputLabel value="#{report.nombreEmpleado}"/>
+                </p:column>
+                
+            </p:dataTable>
+            </h:form>
+        </p:dialog>
 
+        <p:dialog header="Facturas no pagadas" widgetVar="dlgDatos3" id="dlgDatos3">
+            <h:form id="frm4">
+                
+                <p:dataTable id="datos" value="#{reportBean.lstReport3}" var="report">
+                <p:column headerText="Nombre">
+                    <p:outputLabel value="#{report.purchase_id}"/>
+                </p:column>
+                <p:column headerText="RFC">
+                    <p:outputLabel value="#{report.supplier_id}"/>
+                </p:column>
+                <p:column headerText="Correo electronico">
+                    <p:outputLabel value="#{report.date}"/>
+                </p:column>   
+                <p:column headerText="Fecha">
+                    <p:outputLabel value="#{report.status}"/>
+                </p:column>
+                <p:column headerText="Total">
+                    <p:outputLabel value="#{report.total}"/>
+                </p:column>
+ 
+            </p:dataTable>
+            </h:form>
+        </p:dialog>
             </ui:define>
 
         </ui:composition>
