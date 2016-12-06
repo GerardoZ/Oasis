@@ -5,28 +5,77 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>Facelets Template</title>
+        <title>Skynet</title>
+  	<meta charset="utf-8"/>
+        <meta name="description" content="Your description"/>
+        <meta name="keywords" content="Your keywords"/>
+        <meta name="author" content="Your name"/>
+        <link rel="stylesheet" href="resources/css/style.css"/>
     </h:head>
 
     <h:body>
+        
+        <div class="bg-main">
+	<header>
+		<div class="container_24">
+			<div class="wrapper">
+				<div class="grid_17">
+					<h1><a href="index.html">Idealex</a></h1>
+				</div>
+			</div>
+		</div>
+		<nav class="main-menu">
+		<ul class="sf-menu">
+                            <li><h:link outcome="clientes" value="Clientes"/></li>
+                            <li><h:link outcome="supplier" value="Proveedores"/></li>
+                            <li><h:link outcome="components" value="Comopnentes"/></li>
+                            <li><h:link outcome="purchases" value="Resurtir productos"/></li>
+                            <li><h:link outcome="ordersPurchase" value="Ordenes de compra"/></li>
+                            <li><h:link outcome="reports" value="Reportes"/></li>
+		</ul>
+		<div class="clear"></div>
+            </nav>
+                   
+            
+		<div class="pad-slider">
+                    <center>
+                     <div id="content" class="center_content">
+                        <ui:insert name="content">Content</ui:insert>
+                    </div>
+                </center>
+                   
+		
+	</div>
+	</header>
+		
+</div>
+<footer>
+	<div class=" container_24">
+		<div class="wrapper">
+			<div class="grid_6 suffix_2">
+				<h1 class="footer-logo"><a href="index.html">idealex</a></h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ultricies odio magna.</p>
+				
+			</div>
+			<div class="grid_7">
+				<h4>Follow Us</h4>
+				<ul class="tooltips">
+					<li><a href="more.html"><img src="resources/images/icon1.png" alt=""/><span>RSS</span></a></li>
+					<li><a href="more.html"><img src="resources/images/icon3.png" alt=""/><span>Facebook</span></a></li>
+					<li><a href="more.html"><img src="resources/images/icon2.png" alt=""/><span>Twitter</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
 
         <div id="top" class="top">
-             <li><h:link outcome="clientes" value="Clientes"/></li>
-                    <li><h:link outcome="supplier" value="Proveedores"/></li>
-                    <li><h:link outcome="components" value="Comopnentes"/></li>
-                    <li><h:link outcome="purchases" value="Resurtir productos"/></li>
-                    <li><h:link outcome="ordersPurchase" value="Ordenes de compra"/></li>
-                    <li><h:link outcome="reports" value="Reportes"/></li>
+            
 
             <ui:insert name="top">Top</ui:insert>
         </div>
 
-        <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
-        </div>
+       
 
     </h:body>
 

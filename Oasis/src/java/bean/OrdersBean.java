@@ -5,11 +5,13 @@
  */
 package bean;
 
+import dao.ComponentDAO;
 import dao.PurchaseDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import modelo.Component;
 import modelo.Component_Purchase;
 import modelo.Purchase;
 
@@ -61,10 +63,22 @@ public class OrdersBean {
         PurchaseDAO dao;
         try{
             dao = new PurchaseDAO();
-            lstDetails = dao.readDetails(p);
+            lstDetails = dao.readDetails(p);          
         } catch(Exception e){
             System.out.println("Error: " + e);
         }
+    }
+    
+    public String getComponentName(int id) throws Exception{
+        ComponentDAO dao;
+        Component c = null;
+        try{
+            dao = new ComponentDAO();
+            c = dao.getComponent(id);
+        } catch(Exception e){
+            System.out.println("Error: " + e);
+        }      
+        return c.getModeName();
     }
     
 }

@@ -27,15 +27,17 @@ public class PurchaseDAO extends DAO{
         try{
             this.Conectar();
             ResultSet rs;
-            PreparedStatement st = this.getCon().prepareStatement("insert into purchases (date, total, supplier_id) values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement st = this.getCon().prepareStatement("insert into purchases (date, total, supplier_id, status) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             st.setDate(1, new java.sql.Date(System.currentTimeMillis()));
             st.setDouble(2, total);
             st.setInt(3, supplier_id);
+            st.setBoolean(4, false);
             st.executeUpdate();
             rs = st.getGeneratedKeys();
             if(rs.next()){
                 purchase_id = rs.getInt(1);
             }
+            
             for (int i = 0; i < details.size(); i++) {
                 PreparedStatement stDetail = this.getCon().prepareStatement("insert into component_purchase (component_id, purchase_id, quantity, charge) values (?,?,?,?)");
                 stDetail.setInt(1, details.get(i).getComponent().getComponent_id());
@@ -43,6 +45,18 @@ public class PurchaseDAO extends DAO{
                 stDetail.setInt(3, details.get(i).getQuantity());
                 stDetail.setDouble(4, details.get(i).getCharge());
                 stDetail.executeUpdate();
+                
+                PreparedStatement stGetStock = this.getCon().prepareStatement("select stock from components where component_id = ?");
+                stGetStock.setInt(1, details.get(i).getComponent().getComponent_id());
+                ResultSet rsStock = stGetStock.executeQuery();
+                rsStock.first();
+                int stock = rsStock.getInt(1);
+                stock += details.get(i).getQuantity();
+                
+                PreparedStatement stUpdateStock = this.getCon().prepareStatement("update components set stock = ? where component_id = ?");
+                stUpdateStock.setInt(1, stock);
+                stUpdateStock.setInt(2, details.get(i).getComponent().getComponent_id());
+                stUpdateStock.executeUpdate();
             }
             
         } catch(Exception e){
@@ -78,15 +92,27 @@ public class PurchaseDAO extends DAO{
     public List<Component_Purchase> readDetails(Purchase p)throws Exception{
         List<Component_Purchase> list = new ArrayList();
         ResultSet rs;
+        ResultSet rsComp;
         try{
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select * from component_purchase where purchase_id = ?");
             st.setInt(1, p.getPurchase_id());
             rs = st.executeQuery();
             while(rs.next()){
+                PreparedStatement stComp = this.getCon().prepareStatement("select * from components where component_id = ?");
+                stComp.setInt(1, rs.getInt("component_id"));
+                rsComp = stComp.executeQuery();
+                rsComp.first();
+                Component c = new Component();
+                c.setCode(String.valueOf(rsComp.getInt("code")));
+                c.setCompatibility(rsComp.getInt("compatibility"));
+                c.setModeName(rsComp.getString("modName"));
+                c.setPricePurchase(rsComp.getDouble("pricePurchase"));
+                
                 Component_Purchase component_Purchase = new Component_Purchase();
                 component_Purchase.setCharge(rs.getDouble("charge"));
                 component_Purchase.setQuantity(rs.getInt("quantity"));
+                component_Purchase.setComponent(c);
                 list.add(component_Purchase);
             }
         } catch(Exception e){

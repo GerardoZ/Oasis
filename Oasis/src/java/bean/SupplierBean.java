@@ -25,7 +25,8 @@ public class SupplierBean {
     /**
      * Creates a new instance of SupplierBean
      */
-    public SupplierBean() {
+    public SupplierBean() throws Exception {
+        this.show();
     }
 
     public Supplier getSupplier() {
