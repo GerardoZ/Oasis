@@ -7,6 +7,7 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Component;
@@ -144,5 +145,34 @@ public class ComponentDAO extends DAO{
                     
         return c;
 
+    }
+
+    public List<Component> getComponentByType(String type) throws SQLException {
+        List<Component> list = new ArrayList<>();
+        try{
+            this.Conectar();
+            ResultSet rs;
+            PreparedStatement st = this.getCon().prepareStatement("select * from components where type = ?");
+            st.setString(1, type);
+            rs = st.executeQuery();
+            while(rs.next()){
+                Component c = new Component();
+                c.setComponent_id(rs.getInt("component_id"));
+                c.setCode(String.valueOf(rs.getInt("code")));
+                c.setModeName(rs.getString("modName"));
+                c.setStock(rs.getInt("stock"));
+                c.setCompatibility(rs.getInt("compatibility"));
+                c.setType(rs.getString("type"));
+                c.setPricePurchase(rs.getDouble("pricePurchase"));
+                c.setPriceSale(rs.getDouble("priceSale"));
+                list.add(c);
+               
+            }
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+        } finally{
+            this.Cerrar();
+        }
+        return list;
     }
 }

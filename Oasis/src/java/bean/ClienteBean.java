@@ -18,11 +18,11 @@ import modelo.Cliente;
  */
 @ManagedBean
 @ViewScoped
-public class clienteBean {
+public class ClienteBean {
 
     private Cliente alumno=new Cliente();
     private  List <Cliente> lstAlumno;
-    public clienteBean() throws Exception {
+    public ClienteBean() throws Exception {
         this.listar();
     }
 

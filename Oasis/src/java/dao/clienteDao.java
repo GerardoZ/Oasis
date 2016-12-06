@@ -25,14 +25,15 @@ public class clienteDao extends DAO {
             this.Conectar();
             ResultSet rs;
             PreparedStatement st= this.getCon().prepareStatement(""
-                    + "insert into customers(name,email,streetAndNumber,neighborhood,zipCode,phone) values"  //CHECAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                    + "(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                    + "insert into customers(name,email,password,streetAndNumber,neighborhood,zipCode,phone) values"  //CHECAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                    + "(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, client.getNombre());
             st.setString(2, client.getE_mail());
-            st.setString(3, client.getDireccion());
-            st.setString(4, client.getColonia());
-            st.setString(5, client.getCodigoPostal());
-            st.setString(6, client.getTelefono());
+            st.setString(3, client.getPassword());
+            st.setString(4, client.getDireccion());
+            st.setString(5, client.getColonia());
+            st.setString(6, client.getCodigoPostal());
+            st.setString(7, client.getTelefono());
             st.executeUpdate();
             rs = st.getGeneratedKeys();
             rs.first();
