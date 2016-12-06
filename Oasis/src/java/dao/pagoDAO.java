@@ -14,12 +14,13 @@ import modelo.pago;
  * @author angel
  */
 public class pagoDAO extends DAO{
+    clienteDao clDAO = new clienteDao();
     public void registrarPago(pago pago)throws Exception{
         try {
             this.Conectar();
             PreparedStatement st= this.getCon().prepareStatement(""
                     + " insert into creditCards (bank,lastFour,num,monthExpiration,yearExpiration,secCode,customer_id) values"
-                    + "(?,?,?,?,?,?,"+1+")");
+                    + "(?,?,?,?,?,?,?)");
             
             st.setString(1, pago.getBank());
             st.setString(2, pago.getLastFour());
@@ -27,7 +28,9 @@ public class pagoDAO extends DAO{
             st.setString(4, pago.getMonthExpiration());
             st.setString(5, pago.getYearExpiration());
             st.setString(6, pago.getSecCode());
+            st.setInt(7, clDAO.id_client);
 
+            
             
            
 
