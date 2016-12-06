@@ -12,7 +12,7 @@ package modelo;
 public class pago {
  private String bank;
  private String lastFour;
- private int num;
+ private String num;
  private String monthExpiration;
  private String yearExpiration;
  private String secCode;
@@ -33,13 +33,15 @@ public class pago {
         this.lastFour = lastFour;
     }
 
-    public int getNum() {
+    public String getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(String num) {
         this.num = num;
     }
+
+    
 
     public String getMonthExpiration() {
         return monthExpiration;

@@ -15,7 +15,7 @@
                      <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 
                 </h:form>
-                <h1>Registo</h1>
+                <h1>Registro</h1>
                      <h:form id="frm1">
             <p:panelGrid columns="2">
                 <p:outputLabel for="txtNombre" value="Nombre:"/>
@@ -36,7 +36,8 @@
                 
             </p:panelGrid>
                          <br></br>
-                         <p:commandButton value="Continuar" actionListener="#{signBean.registrar()}" onsuccess="PF('dlgDatos').show();"/>
+
+            <p:commandButton value="Continuar" actionListener="#{signBean.registrar()}"/>
 
         </h:form>
                 
@@ -44,17 +45,17 @@
             <h:form id="frm2">
             <p:panelGrid columns="2">
                 <p:outputLabel for="banco" value="Banco:"/>
-                <p:inputText id="banco" value="#{pagoBean.pago.bank}"/>
+                <p:inputText id="banco" value="#{pagoBean.pago.bank}" required="true"/>
                 <p:outputLabel for="lastFour" value="Ultimos 4 digitos:"/>
-                <p:inputText id="lastFour" value="#{pagoBean.pago.lastFour}"/>
+                <p:inputText id="lastFour" value="#{pagoBean.pago.lastFour}" required="true"/>
                 <p:outputLabel for="num" value="Numero de tarjeta:"/>
-                <p:inputText id="num" value="#{pagoBean.pago.num}"/>
+                <p:inputText id="num" value="#{pagoBean.pago.num}" required="true"/>
                 <p:outputLabel for="mes" value="Mes de expiración:"/>
-                <p:inputText id="mes" value="#{pagoBean.pago.monthExpiration}"/>
+                <p:inputText id="mes" value="#{pagoBean.pago.monthExpiration}" required="true"/>
                 <p:outputLabel for="ano" value="Año de expiración:"/>
-                <p:inputText id="ano" value="#{pagoBean.pago.yearExpiration}"/>     
+                <p:inputText id="ano" value="#{pagoBean.pago.yearExpiration}" required="true"/>     
                 <p:outputLabel for="secCode" value="Codigo de Seguridad:"/>
-                <p:inputText id="secCode" value="#{pagoBean.pago.secCode}"/>
+                <p:inputText id="secCode" value="#{pagoBean.pago.secCode}" required="true"/>
                 <p:commandButton value="Registrar" actionListener="#{pagoBean.registrarPago()}"/>
 
                 

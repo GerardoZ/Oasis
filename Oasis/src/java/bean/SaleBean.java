@@ -208,6 +208,7 @@ public class SaleBean {
         
     }
     
+    
     public void clear() throws Exception{
         this.lstDetails = new ArrayList<>();
         total = 0;

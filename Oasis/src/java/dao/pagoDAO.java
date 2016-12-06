@@ -24,7 +24,7 @@ public class pagoDAO extends DAO{
             
             st.setString(1, pago.getBank());
             st.setString(2, pago.getLastFour());
-            st.setString(3, Integer.toString(pago.getNum()));
+            st.setString(3, pago.getNum());
             st.setString(4, pago.getMonthExpiration());
             st.setString(5, pago.getYearExpiration());
             st.setString(6, pago.getSecCode());

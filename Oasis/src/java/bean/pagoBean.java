@@ -8,9 +8,12 @@ import dao.pagoDAO;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.pago;
+import org.primefaces.context.RequestContext;
 /**
  *
  * @author angel
@@ -46,6 +49,10 @@ public class pagoBean {
         try {
             dao=new pagoDAO();
             dao.registrarPago(pago);
+            RequestContext.getCurrentInstance().execute("PF('dlgDatos').hide()");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Listo!!", "Ahora eres un usuario Skynet."));
+
+
         } catch (Exception e) {
             throw e;
         }

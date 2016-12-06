@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./frontTemplate.xhtml">
+
+            <ui:define name="content">
+                <h1>Mis compras</h1>
+                <p:dataTable value="#{customerSalesBean.lstSales}" var="sale">
+                    <p:column headerText="ID">
+                        <p:outputLabel value="#{sale.sale_id}"/>
+                    </p:column>
+                    <p:column headerText="Fecha">
+                        <p:outputLabel value="#{sale.date}"/>
+                    </p:column>
+                    <p:column headerText="Total">
+                        <p:outputLabel value="#{sale.total}"/>
+                    </p:column>
+                    <p:column headerText="Envio">
+                        <p:outputLabel value="#{sale.shipment_status}"/>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

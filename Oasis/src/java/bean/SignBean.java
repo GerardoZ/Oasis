@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import modelo.Cliente;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -48,6 +49,8 @@ public class SignBean implements Serializable {
         try {
             dao=new clienteDao();
             dao.registrar(c);
+                RequestContext.getCurrentInstance().execute("PF('dlgDatos').show()");
+
         } catch (Exception e) {
             throw e;
         }

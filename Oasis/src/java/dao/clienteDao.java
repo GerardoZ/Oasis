@@ -19,7 +19,7 @@ import modelo.Cliente;
  * @author Christopher
  */
 public class clienteDao extends DAO {
-    static int id_client = 1;
+    public static int id_client = 1;
     
      public void registrar(Cliente client)throws Exception{
         try {
