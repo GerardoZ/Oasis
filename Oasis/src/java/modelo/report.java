@@ -26,6 +26,11 @@ public class report {
     //datos de empleados del mes
     private String nombreEmpleado;
 
+    //datos de reporte de ventas
+    
+    private String fechaVenta;
+    private double totalVenta;
+    
     public String getNombreEmpleado() {
         return nombreEmpleado;
     }
@@ -99,6 +104,22 @@ public class report {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(String fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+
+    public double getTotalVenta() {
+        return totalVenta;
+    }
+
+    public void setTotalVenta(double totalVenta) {
+        this.totalVenta = totalVenta;
     }
 
 

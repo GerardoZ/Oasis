@@ -19,7 +19,7 @@
                 <p:commandButton value="Piezas más vendidas" actionListener="#{reportBean.mostrarReporte1()}" oncomplete="PF('dlgDatos').show();" update=":dlgDatos"/>
                 <p:commandButton value="Empleado del mes" actionListener="#{reportBean.mostrarReporte2()}" oncomplete="PF('dlgDatos2').show();" update=":dlgDatos2"/>
                 <p:commandButton value="Facturas no pagadas" actionListener="#{reportBean.mostrarReporte3()}" oncomplete="PF('dlgDatos3').show();" update=":dlgDatos3"/>
-                <p:commandButton value="Otras mamadas" actionListener="#{reportBean.mostrarReporte1()}" oncomplete="PF('dlgDatos').show();" update=":dlgDatos"/>
+                <p:commandButton value="Ventas" actionListener="#{reportBean.mostrarReporte4()}" oncomplete="PF('dlgDatos4').show();" update=":dlgDatos4"/>
                 
         <p:dialog header="Piezas más vendidas" widgetVar="dlgDatos" id="dlgDatos">
             <h:form id="frm3">
@@ -71,6 +71,21 @@
                     <p:outputLabel value="#{report.total}"/>
                 </p:column>
  
+            </p:dataTable>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Ventas" widgetVar="dlgDatos4" id="dlgDatos4">
+            <h:form id="frm5">
+                
+                <p:dataTable id="datos" value="#{reportBean.lstReport4}" var="report">
+                <p:column headerText="Fecha de venta">
+                    <p:outputLabel value="#{report.fechaVenta}"/>
+                </p:column>
+                <p:column headerText="Total de la venta">
+                    <p:outputLabel value="#{report.totalVenta}"/>
+                </p:column>
+                
             </p:dataTable>
             </h:form>
         </p:dialog>

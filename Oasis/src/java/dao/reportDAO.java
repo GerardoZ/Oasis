@@ -21,15 +21,15 @@ public class reportDAO extends DAO{
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st= this.getCon().prepareStatement("select sale_id, fecha, total from sales;");
+            PreparedStatement st= this.getCon().prepareStatement("select stock, type, priceSale from components;");
             rs=st.executeQuery();
             lista=new ArrayList();
             while(rs.next()){
                 report report=new report();
                 
-                report.setCantidad(rs.getInt("sale_id"));
-                report.setNombre(rs.getString("fecha"));
-                report.setPrecio(rs.getDouble("total"));
+                report.setCantidad(rs.getInt("stock"));
+                report.setNombre(rs.getString("type"));
+                report.setPrecio(rs.getDouble("priceSale"));
                 lista.add(report);
             }
         } catch (Exception e) {
@@ -109,6 +109,26 @@ public class reportDAO extends DAO{
         return list;
     }
 
+    public List<report> show3()throws Exception{
+        List<report> list = new ArrayList();
+        ResultSet rs;
+        try{
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("select date, total from sales");
+            rs = st.executeQuery();
+            while(rs.next()){
+                report report=new report();
+                report.setFechaVenta(rs.getString("date"));
+                report.setTotalVenta(rs.getDouble("total"));
+                list.add(report);
+            }
+        } catch(Exception e){
+            System.out.println("Error: " + e);
+        } finally{
+            this.Cerrar();
+        }
+        return list;
+    }
    
    
 }

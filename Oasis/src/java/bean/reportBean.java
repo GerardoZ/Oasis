@@ -21,11 +21,21 @@ public class reportBean {
      private List<report> lstReport1;
      private List<report> lstReport2;
      private List<report> lstReport3;
+     private List<report> lstReport4;
 
     public reportBean() {
         
     }
 
+    public List<report> getLstReport4() {
+        return lstReport4;
+    }
+
+    public void setLstReport4(List<report> lstReport4) {
+        this.lstReport4 = lstReport4;
+    }
+
+    
     public List<report> getLstReport3() {
         return lstReport3;
     }
@@ -55,7 +65,7 @@ public class reportBean {
     public void mostrarReporte1() throws Exception{
         try{
             reportDAO report1 = new reportDAO();
-            this.lstReport1 =report1.show();
+            this.lstReport1 =report1.Listar();
         } catch(Exception e){
             System.out.println("Error: " + e);
         }        
@@ -78,4 +88,14 @@ public class reportBean {
             System.out.println("Error: " + e);
         }        
     }
+    
+    public void mostrarReporte4() throws Exception{
+        try{
+            reportDAO report4 = new reportDAO();
+            this.lstReport4 =report4.show3();
+        } catch(Exception e){
+            System.out.println("Error: " + e);
+        }        
+    }
+    
 }
