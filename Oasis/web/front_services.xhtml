@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./frontTemplate.xhtml">
+
+            <ui:define name="content">
+                <h1>Arma tu PC</h1>
+       
+                <h:form id="form">
+                    <p:carousel value="#{saleBean.lstMother}" headerText="Tarjetas madre" var="c" itemStyle="text-align:center" responsive="true">
+                        <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+                                <p:graphicImage value="./img/motherboard.jpg" width="300"/> 
+                            </f:facet>
+
+                            <h:outputText value="ID:" />
+                            <h:outputText value="#{c.component_id}" />
+
+                            <h:outputText value="Nombre" />
+                            <h:outputText value="#{c.modeName}" />
+
+                            <h:outputText value="Precio:" />
+                            <h:outputText value="$#{c.priceSale}"/>
+
+                            <h:outputText value="Compatibilidad:" />
+                            <h:outputText value="#{c.compatibility}" />
+                            
+                            <p:commandButton value="Elegir"/>
+
+                        </p:panelGrid>
+
+                    </p:carousel>
+                </h:form>
+                <br></br>
+                <h:form id="form2">
+                    <p:carousel value="#{saleBean.lstRam}" headerText="Memorias RAM" var="c" itemStyle="text-align:center" responsive="true">
+                        <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+                                <p:graphicImage value="./img/ram.jpg" width="300"/> 
+                            </f:facet>
+
+                            <h:outputText value="ID:" />
+                            <h:outputText value="#{c.component_id}" />
+
+                            <h:outputText value="Nombre" />
+                            <h:outputText value="#{c.modeName}" />
+
+                            <h:outputText value="Precio:" />
+                            <h:outputText value="$#{c.priceSale}"/>
+
+                            <h:outputText value="Compatibilidad:" />
+                            <h:outputText value="#{c.compatibility}" />
+                            
+                            <p:commandButton value="Elegir"/>
+
+                        </p:panelGrid>
+
+                    </p:carousel>
+                </h:form>
+                
+                <br></br>
+                <h:form id="form3">
+                    <p:carousel value="#{saleBean.lstCPU}" headerText="Procesadores" var="c" itemStyle="text-align:center" responsive="true">
+                        <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+                                <p:graphicImage value="./img/cpu.jpeg" width="300"/> 
+                            </f:facet>
+
+                            <h:outputText value="ID:" />
+                            <h:outputText value="#{c.component_id}" />
+
+                            <h:outputText value="Nombre" />
+                            <h:outputText value="#{c.modeName}" />
+
+                            <h:outputText value="Precio:" />
+                            <h:outputText value="$#{c.priceSale}"/>
+
+                            <h:outputText value="Compatibilidad:" />
+                            <h:outputText value="#{c.compatibility}" />
+                            
+                            <p:commandButton value="Elegir"/>
+
+                        </p:panelGrid>
+
+                    </p:carousel>
+                </h:form>
+                
+                <br></br>
+                <h:form id="form4">
+                    <p:carousel value="#{saleBean.lstGPU}" headerText="Tarjetas de gráficos" var="c" itemStyle="text-align:center" responsive="true">
+                        <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+                                <p:graphicImage value="./img/gpu.jpg" width="300"/> 
+                            </f:facet>
+
+                            <h:outputText value="ID:" />
+                            <h:outputText value="#{c.component_id}" />
+
+                            <h:outputText value="Nombre" />
+                            <h:outputText value="#{c.modeName}" />
+
+                            <h:outputText value="Precio:" />
+                            <h:outputText value="$#{c.priceSale}"/>
+
+                            <h:outputText value="Compatibilidad:" />
+                            <h:outputText value="#{c.compatibility}" />
+                            
+                            <p:commandButton value="Elegir"/>
+
+                        </p:panelGrid>
+
+                    </p:carousel>
+                </h:form>
+                
+                <br></br>
+                <h:form id="form5">
+                    <p:carousel value="#{saleBean.lstDD}" headerText="Discos duros" var="c" itemStyle="text-align:center" responsive="true">
+                        <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+                                <p:graphicImage value="./img/dd.jpg" width="300"/> 
+                            </f:facet>
+
+                            <h:outputText value="ID:" />
+                            <h:outputText value="#{c.component_id}" />
+
+                            <h:outputText value="Nombre" />
+                            <h:outputText value="#{c.modeName}" />
+
+                            <h:outputText value="Precio:" />
+                            <h:outputText value="$#{c.priceSale}"/>
+
+                            <h:outputText value="Compatibilidad:" />
+                            <h:outputText value="#{c.compatibility}" />
+                            
+                            <p:commandButton value="Elegir"/>
+
+                        </p:panelGrid>
+
+                    </p:carousel>
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

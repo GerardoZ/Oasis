@@ -12,6 +12,7 @@ package modelo;
 public class Cliente {
    private String nombre; 
    private String e_mail; 
+   private String password;
    private String direccion; 
    private String colonia; 
    private String codigoPostal; 
@@ -41,6 +42,15 @@ public class Cliente {
     public void setE_mail(String e_mail) {
         this.e_mail = e_mail;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
 
     public String getDireccion() {
         return direccion;

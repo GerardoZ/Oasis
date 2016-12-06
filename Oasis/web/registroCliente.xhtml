@@ -7,26 +7,28 @@
 
     <body>
 
-        <ui:composition template="./fromTemplate.xhtml">
+        <ui:composition template="./frontTemplate.xhtml">
 
             <ui:define name="content">
                 
                      <h:form id="frm1">
             <p:panelGrid columns="2">
                 <p:outputLabel for="txtNombre" value="Nombre:"/>
-                <p:inputText id="txtNombre" value="#{clienteBean.alumno.nombre}"/>
+                <p:inputText id="txtNombre" value="#{signBean.c.nombre}"/>
                 <p:outputLabel for="email" value="Correo electronico:"/>
-                <p:inputText id="email" value="#{clienteBean.alumno.e_mail}"/>
+                <p:inputText id="email" value="#{signBean.c.e_mail}"/>
+                <p:outputLabel for="password" value="Contraseña:"/>
+                <p:inputText id="password" value="#{signBean.c.password}" type="password"/>
                 <p:outputLabel for="colonia" value="Colonia"/>
-                <p:inputText id="colonia" value="#{clienteBean.alumno.colonia}"/>
+                <p:inputText id="colonia" value="#{signBean.c.colonia}"/>
                 <p:outputLabel for="calle" value="Calle y numero:"/>
-                <p:inputText id="calle" value="#{clienteBean.alumno.direccion}"/>               
+                <p:inputText id="calle" value="#{signBean.c.direccion}"/>               
                 <p:outputLabel for="cp" value="Codigo Postal:"/>
-                <p:inputText id="cp" value="#{clienteBean.alumno.codigoPostal}"/>
+                <p:inputText id="cp" value="#{signBean.c.codigoPostal}"/>
                 <p:outputLabel for="telefono" value="Telefono:"/>
-                <p:inputText id="telefono" value="#{clienteBean.alumno.telefono}"/>
+                <p:inputText id="telefono" value="#{signBean.c.telefono}"/>
 
-                <p:commandButton value="Continuar" actionListener="#{clienteBean.registrar()}" oncomplete="PF('dlgDatos').show();"/>
+                <p:commandButton value="Continuar" actionListener="#{signBean.registrar()}" oncomplete="PF('dlgDatos').show();"/>
                 
                 
                 

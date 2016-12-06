@@ -39,6 +39,7 @@
                 
                 <p:outputLabel for="txtCp" value="Codigo Postal:"/>
                 <p:inputText id="txtCp" value="#{clienteBean.alumno.codigoPostal}" required="true"/>
+                
                 <p:message for="txtCp" />
                 
                 <p:outputLabel for="txtTel" value="Telefono:"/>
@@ -47,7 +48,7 @@
               
             </p:panelGrid>
              <br></br>
-             <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}" update="grid"/>
+             <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}" update="grid datos"/>
              <p:commandButton value="Consultar" actionListener="#{clienteBean.listar()}" update="datos"/>
              
              <br></br>
